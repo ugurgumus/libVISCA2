@@ -210,6 +210,8 @@
 #define VISCA_CAM_STABILIZER             0x34
 #define   VISCA_CAM_STABILIZER_ON         0x02
 #define   VISCA_CAM_STABILIZER_OFF        0x03
+#define   VISCA_CMD_APPENDIX_1            0x01
+#define   VISCA_CMD_APPENDIX_2            0x04
 #define VISCA_MEMORY                     0x3F
 #define   VISCA_MEMORY_RESET               0x00
 #define   VISCA_MEMORY_SET                 0x01
@@ -552,6 +554,9 @@ VISCA_API uint32_t
 VISCA_close_serial(VISCAInterface_t *iface);
 
 /* COMMANDS */
+
+VISCA_API uint32_t
+VISCA_set_camera_stabilization_enabled(VISCAInterface_t *iface, VISCACamera_t *camera, uint32_t enabled);
 
 VISCA_API uint32_t
 VISCA_set_power(VISCAInterface_t *iface, VISCACamera_t *camera, uint8_t power);
