@@ -230,6 +230,21 @@ VISCA_get_camera_info(VISCAInterface_t *iface, VISCACamera_t *camera)
 /***********************************/
 
 VISCA_API uint32_t
+VISCA_set_camera_stabilization_enabled(VISCAInterface_t *iface, VISCACamera_t *camera, uint32_t enabled)
+{
+    VISCAPacket_t packet;
+
+    _VISCA_init_packet(&packet);
+    _VISCA_append_byte(&packet, VISCA_COMMAND);
+    _VISCA_append_byte(&packet, VISCA_CMD_APPENDIX_1);
+    _VISCA_append_byte(&packet, VISCA_CMD_APPENDIX_2);
+    _VISCA_append_byte(&packet, VISCA_CAM_STABILIZER);
+    _VISCA_append_byte(&packet, enabled ? VISCA_CAM_STABILIZER_ON : VISCA_CAM_STABILIZER_OFF);
+
+    return _VISCA_send_packet_with_reply(iface, camera, &packet);
+}
+
+VISCA_API uint32_t
 VISCA_set_power(VISCAInterface_t *iface, VISCACamera_t *camera, uint8_t power)
 {
     VISCAPacket_t packet;
